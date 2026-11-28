@@ -3,184 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全能应急与安全科普指南</title>
+    <title>全能安全应急指南</title>
     <style>
-        /* ====== 全新高级风格 ====== */
+        /* ====== 整体布局与左侧导航 ====== */
+        * { box-sizing: border-box; }
         body {
             font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
-            background-color: #f2f5f9; /* 清爽的高级灰底色 */
+            background-color: #f0f4f8;
             color: #333;
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            display: flex; /* 分左右两栏 */
+            min-height: 100vh;
         }
 
-        /* 惊艳的渐变大头部 */
-        header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* 深邃高级蓝 */
+        /* 左侧固定分类条 */
+        .sidebar {
+            width: 200px;
+            background-color: #1e3c72;
             color: white;
+            padding-top: 20px;
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        .sidebar h2 {
             text-align: center;
-            padding: 60px 20px 50px;
-            border-radius: 0 0 30px 30px;
-            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.3);
-            margin-bottom: 40px;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 36px;
-            letter-spacing: 3px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        header p {
-            margin-top: 15px;
             font-size: 18px;
-            opacity: 0.9;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
         }
-
-        /* 悬浮胶囊搜索框（你要求的输入框） */
-        .search-container {
-            max-width: 600px;
-            margin: -30px auto 40px;
-            position: relative;
-            z-index: 10;
-            padding: 0 20px;
-        }
-        .search-box {
-            display: flex;
-            background: white;
-            border-radius: 50px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            overflow: hidden;
-            padding: 5px;
-        }
-        .search-box input {
-            flex: 1;
-            border: none;
-            padding: 15px 25px;
-            font-size: 16px;
-            outline: none;
-            border-radius: 50px;
-            color: #555;
-        }
-        .search-box button {
-            background: #ff4757; /* 亮红色按钮 */
-            color: white;
-            border: none;
-            padding: 0 35px;
-            font-size: 16px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
+        .sidebar a {
+            display: block;
+            color: #d1d8e0;
+            text-decoration: none;
+            padding: 15px 20px;
             transition: 0.3s;
+            border-left: 4px solid transparent;
         }
-        .search-box button:hover {
-            background: #e84118;
-        }
-
-        /* 卡片网格布局：自动排成好看的网格 */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px 60px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
+        .sidebar a:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border-left: 4px solid #ff4757;
         }
 
-        /* 华丽的高级卡片样式 */
-        .card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        /* 右侧内容区 */
+        .main-wrapper {
+            flex: 1;
             display: flex;
             flex-direction: column;
-            border: 1px solid #eee;
+        }
+
+        /* 顶部蓝框：贴边且变窄 */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px 40px;
+        }
+        header h1 { margin: 0; font-size: 28px; }
+        header p { margin-top: 5px; font-size: 14px; opacity: 0.8; }
+
+        /* ====== 卡片排版区 ====== */
+        .container {
+            padding: 30px 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自动填满空白 */
+            gap: 25px;
+        }
+
+        /* 卡片样式：带图片、圆角和悬浮效果 */
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            border: 1px solid #eaeaea;
         }
         .card:hover {
-            transform: translateY(-10px); /* 鼠标悬停上浮效果 */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.1);
         }
 
-        /* 卡片顶部图片的样式（如果你在卡片里加了图片会自动变好看） */
+        /* 卡片图片样式 */
         .card-img {
             width: 100%;
-            height: 180px;
-            object-fit: cover; /* 保证图片铺满不拉伸 */
-            border-bottom: 4px solid #ff4757; /* 底部红线点缀 */
+            height: 160px;
+            object-fit: cover;
         }
 
-        /* 卡片内部文字样式 */
+        /* 卡片文字样式 */
         .card-content {
-            padding: 25px;
-            flex: 1;
+            padding: 20px;
         }
         .card-content h2 {
-            margin: 0 0 15px 0;
-            font-size: 22px;
+            margin: 0 0 12px 0;
+            font-size: 20px;
             color: #2c3e50;
             border-bottom: 2px dashed #f1f2f6;
             padding-bottom: 10px;
         }
-        
         .card-content ul {
             padding-left: 20px;
             margin: 0;
             color: #555;
+            font-size: 15px;
         }
-        .card-content li {
-            margin-bottom: 12px;
-        }
-        
-        /* 强调文字高亮 */
+        .card-content li { margin-bottom: 8px; }
+
         .highlight {
             color: #ff4757;
             font-weight: bold;
             background: #ffe3e3;
-            padding: 0 5px;
+            padding: 0 4px;
             border-radius: 4px;
         }
 
-        /* 底部版权 */
-        footer {
-            text-align: center;
-            padding: 40px;
-            color: #aaa;
-            font-size: 14px;
-            background: #fff;
-            border-top: 1px solid #eee;
+        /* 手机端自动适配 */
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; position: relative; display: flex; flex-wrap: wrap; padding: 10px; }
+            .sidebar h2 { display: none; }
+            .sidebar a { padding: 8px 12px; border-left: none; border-radius: 20px; background: rgba(255,255,255,0.1); margin: 5px; }
+            .container { padding: 20px; }
+            header { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- 全新头部 -->
-    <header>
-        <h1>🚨 全能安全应急指南</h1>
-        <p>掌握关键时刻能救命的硬核技能</p >
-    </header>
+    <!-- 左侧导航条 -->
+    <nav class="sidebar">
+        <h2>安全分类</h2>
+        <a href=" ">🔥 火灾逃生</a >
+        <a href="#choking">🫁 异物卡喉</a >
+        <a href="#electric">⚡ 触电急救</a >
+        <a href="#cpr">❤️ 心肺复苏</a >
+        <a href="#mine">⛏️ 煤矿安全</a >
+        <a href="#chemical">🧪 化学安全</a >
+        <a href="#drown">🌊 溺水急救</a >
+        <a href="#snake">🐍 毒蛇咬伤</a >
+        <a href="#bee">🐝 蜂蜇伤</a >
+    </nav>
 
-    <!-- 悬浮搜索输入框 -->
-    <div class="search-container">
-        <div class="search-box">
-            <input type="text" placeholder="输入你遇到的问题（如：火灾、触电、毒蛇）...">
-            <button>立即搜索</button>
-        </div>
-    </div>
+    <!-- 右侧主内容区 -->
+    <div class="main-wrapper">
+        
+        <!-- 顶部窄蓝框 -->
+        <header>
+            <h1>🚨 全能安全应急指南</h1>
+            <p>掌握关键时刻能救命的硬核技能，建议收藏</p >
+        </header>
 
-    <!-- 卡片内容区（从这里开始往下就是你原本的卡片 1、2、3） -->
-    <div class="container">
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>🛑 实用应急科普指南</h1>
-        <p>关键时刻能救命的常识，建议收藏</p >
-    </header>
-
-    <div class="container">
+        <!-- 卡片网格开始（⬇️ 你的卡片1从这里开始接） -->
+        <div class="container">
         
         <!-- 卡片 1 -->
         <div class="card">
