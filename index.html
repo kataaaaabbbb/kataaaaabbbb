@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>全能安全应急指南</title>
     <style>
-        /* ====== 整体布局与左侧导航 ====== */
         * { box-sizing: border-box; }
         body {
             font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -14,11 +13,11 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
-            display: flex; /* 分左右两栏 */
+            display: flex;
             min-height: 100vh;
         }
 
-        /* 左侧固定分类条 */
+        /* ====== 左侧分类导航 ====== */
         .sidebar {
             width: 200px;
             background-color: #1e3c72;
@@ -51,14 +50,14 @@
             border-left: 4px solid #ff4757;
         }
 
-        /* 右侧内容区 */
+        /* ====== 右侧内容区 ====== */
         .main-wrapper {
             flex: 1;
             display: flex;
             flex-direction: column;
         }
 
-        /* 顶部蓝框：贴边且变窄 */
+        /* 顶部贴边蓝框（无搜索框） */
         header {
             background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             color: white;
@@ -67,15 +66,15 @@
         header h1 { margin: 0; font-size: 28px; }
         header p { margin-top: 5px; font-size: 14px; opacity: 0.8; }
 
-        /* ====== 卡片排版区 ====== */
+        /* ====== 瀑布流网格：解决中间留白 ====== */
         .container {
             padding: 30px 40px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* 自动填满空白 */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 25px;
         }
 
-        /* 卡片样式：带图片、圆角和悬浮效果 */
+        /* 卡片样式 */
         .card {
             background: white;
             border-radius: 12px;
@@ -91,14 +90,12 @@
             box-shadow: 0 12px 25px rgba(0,0,0,0.1);
         }
 
-        /* 卡片图片样式 */
         .card-img {
             width: 100%;
             height: 160px;
             object-fit: cover;
         }
 
-        /* 卡片文字样式 */
         .card-content {
             padding: 20px;
         }
@@ -125,7 +122,6 @@
             border-radius: 4px;
         }
 
-        /* 手机端自动适配 */
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { width: 100%; height: auto; position: relative; display: flex; flex-wrap: wrap; padding: 10px; }
@@ -138,7 +134,6 @@
 </head>
 <body>
 
-    <!-- 左侧导航条 -->
     <nav class="sidebar">
         <h2>安全分类</h2>
         <a href=" ">🔥 火灾逃生</a >
@@ -152,124 +147,125 @@
         <a href="#bee">🐝 蜂蜇伤</a >
     </nav>
 
-    <!-- 右侧主内容区 -->
     <div class="main-wrapper">
         
-        <!-- 顶部窄蓝框 -->
         <header>
             <h1>🚨 全能安全应急指南</h1>
             <p>掌握关键时刻能救命的硬核技能，建议收藏</p >
         </header>
 
-        <!-- 卡片网格开始（⬇️ 你的卡片1从这里开始接） -->
         <div class="container">
-        
-        <!-- 卡片 1 -->
-        <div class="card">
-            <h2>🔥 火灾逃生</h2>
-            <ul>
-                <li>发现火情，第一时间拨打 <span class="highlight">119</span>，说清详细地址。</li>
-                <li>用湿毛巾捂住口鼻，<strong>弯腰低姿</strong>前行（因为有毒烟气往上走）。</li>
-                <li><span class="highlight">千万不要乘坐电梯</span>，必须走楼梯安全通道。</li>
-                <li>如果被困房间，用湿布堵住门缝，在阳台挥舞鲜艳物品呼救。</li>
-            </ul>
-        </div>
+            <!-- 卡片 1 -->
+            <div class="card" id="fire">
+                < img src="https://images.unsplash.com/photo-1486672236737-1e3c8c397524?auto=format&fit=crop&w=600&q=80" class="card-img" alt="火灾">
+                <div class="card-content">
+                    <h2>🔥 火灾逃生</h2>
+                    <ul>
+                        <li>发现火情，第一时间拨打 <span class="highlight">119</span>。</li>
+                        <li>用湿毛巾捂住口鼻，<strong>弯腰低姿</strong>前行。</li>
+                        <li><span class="highlight">千万不要乘坐电梯</span>，走安全通道。</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 卡片 2 -->
-        <div class="card">
-            <h2>🩹 异物卡喉（海姆立克急救法）</h2>
-            <ul>
-                <li>患者表现为双手掐脖子，无法说话、面色发紫。</li>
-                <li>站在患者背后，双臂环绕其腰部。</li>
-                <li>一手握拳，拳眼对准患者肚脐上方两指处。</li>
-                <li>另一手包住拳头，<span class="highlight">快速向上向内冲击</span>，直到异物吐出。</li>
-            </ul>
-        </div>
+            <!-- 卡片 2 -->
+            <div class="card" id="choking">
+                < img src="https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=600&q=80" class="card-img" alt="卡喉">
+                <div class="card-content">
+                    <h2>🫁 异物卡喉急救</h2>
+                    <ul>
+                        <li>站患者背后，双臂环绕其腰部。</li>
+                        <li>拳眼对准肚脐上方两指处，<span class="highlight">快速向上向内冲击</span>。</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 卡片 3 -->
-        <div class="card">
-            <h2>⚡ 触电急救</h2>
-            <ul>
-                <li>切勿直接用手拉拽触电者。</li>
-                <li>第一时间<span class="highlight">切断电源</span>（拔插头、关电闸）。</li>
-                <li>如果无法断电，用干燥的木棍、塑料等绝缘物挑开电线。</li>
-                <li>拨打 120，若患者无呼吸心跳，立即进行心肺复苏（CPR）。</li>
-            </ul>
-        </div>
-<!-- 卡片 4：煤矿安全 -->
-        <div class="card">
-            <h2>⛏️ 煤矿安全应急</h2>
-            <ul>
-                <li><strong>瓦斯爆炸：</strong>迅速背向空气震动方向卧倒，面部朝下。立刻佩戴自救器，逆风撤离。</li>
-                <li><strong>透水事故：</strong>迅速向高处（上山巷道或地面）撤离。被困时保持冷静，<span class="highlight">敲击管道或铁轨</span>发出求救信号。</li>
-                <li><strong>冒顶（坍塌）：</strong>迅速躲在坚固的支架或木垛下，身体贴紧三角安全区。</li>
-            </ul>
-        </div>
+            <!-- 卡片 3 -->
+            <div class="card" id="electric">
+                < img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?auto=format&fit=crop&w=600&q=80" class="card-img" alt="触电">
+                <div class="card-content">
+                    <h2>⚡ 触电急救</h2>
+                    <ul>
+                        <li>切勿直接用手拉拽触电者。</li>
+                        <li>第一时间<span class="highlight">切断电源</span>（拔插头、关电闸）。</li>
+                        <li>用干燥的木棍挑开电线。</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 卡片 5：化学安全 -->
-        <div class="card">
-            <h2>🧪 化学安全防护</h2>
-            <ul>
-                <li><strong>皮肤接触：</strong>立即脱去污染衣物，用<span class="highlight">大量流动清水冲洗至少 15-20 分钟</span>。</li>
-                <li><strong>眼睛溅入：</strong>立即用洗眼器或清水从眼角内侧向外侧冲洗，翻开眼睑。</li>
-                <li><strong>吸入毒气：</strong>施救者必须佩戴防毒面具，迅速将患者移至通风处。</li>
-            </ul>
-        </div>
+            <!-- 卡片 4 -->
+            <div class="card" id="cpr">
+                < img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=600&q=80" class="card-img" alt="CPR">
+                <div class="card-content">
+                    <h2>❤️ 心肺复苏</h2>
+                    <ul>
+                        <li>双手交叠，掌根置于两乳头连线中点。</li>
+                        <li><span class="highlight">深度 5-6 厘米，频率 100-120 次/分</span>。</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 卡片 6：心肺复苏 -->
-        <div class="card">
-            <h2>❤️ 心肺复苏（CPR）</h2>
-            <ul>
-                <li><strong>胸外按压：</strong>双手交叠，掌根置于两乳头连线中点。<span class="highlight">深度 5-6 厘米，频率 100-120 次/分</span>。</li>
-                <li><strong>人工呼吸：</strong>捏住患者鼻孔，包住口唇吹气。按压与吹气比例为 <strong>30:2</strong>。</li>
-                <li>如果不愿意做人工呼吸，请<span class="highlight">持续进行胸外按压</span>直到急救人员到达。</li>
-            </ul>
-        </div>
+            <!-- 卡片 5 -->
+            <div class="card" id="mine">
+                < img src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=600&q=80" class="card-img" alt="煤矿">
+                <div class="card-content">
+                    <h2>⛏️ 煤矿安全应急</h2>
+                    <ul>
+                        <li>瓦斯爆炸：背向卧倒，佩戴自救器撤离。</li>
+                        <li>透水事故：向高处撤离，被困时敲击管道求救。</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 卡片 7：溺水急救 -->
-        <div class="card">
-            <h2>🌊 溺水急救</h2>
-            <ul>
-                <li>将溺水者救上岸后，首先清理口鼻中的泥沙和异物。</li>
-                <li><strong>千万不要“控水”（倒挂控水）！</strong>这不仅没用，还会延误抢救时间。</li>
-                <li>如果患者无呼吸心跳，立即进行心肺复苏（先进行 2 次人工呼吸，再进行 30 次胸外按压）。</li>
-            </ul>
-        </div>
+            <!-- 卡片 6 -->
+            <div class="card" id="chemical">
+                < img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80" class="card-img" alt="化学">
+                <div class="card-content">
+                    <h2>🧪 化学安全防护</h2>
+                    <ul>
+                        <li>皮肤接触：脱去衣物，<span class="highlight">清水冲洗至少 15 分钟</span>。</li>
+                        <li>吸入毒气：迅速移至通风处。</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 卡片 8：毒蛇咬伤 -->
-        <div class="card">
-            <h2>🐍 毒蛇咬伤急救</h2>
-            <ul>
-                <li>保持安静，限制伤肢活动，避免毒液随血液加速扩散。</li>
-                <li>在伤口近心端（靠近心脏的一侧）用绷带绑扎，松紧度以能插入一根手指为宜，每隔 30 分钟放松 1-2 分钟。</li>
-                <li><span class="highlight">绝对不要用嘴吸毒！</span>不要切割伤口！尽快送医注射抗蛇毒血清。</li>
-            </ul>
-        </div>
+            <!-- 卡片 7 -->
+            <div class="card" id="drown">
+                < img src="https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=600&q=80" class="card-img" alt="溺水">
+                <div class="card-content">
+                    <h2>🌊 溺水急救</h2>
+                    <ul>
+                        <li>将溺水者救上岸后，首先清理口鼻异物。</li>
+                        <li><span class="highlight">千万不要倒挂控水</span>！会延误抢救。</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 卡片 9：蜂蜇伤 -->
-        <div class="card">
-            <h2>🐝 蜂蜇伤急救</h2>
-            <ul>
-                <li><strong>拔出毒刺：</strong>用指甲或卡片边缘刮掉毒刺，<span class="highlight">千万不要用手挤压毒囊</span>，否则会注入更多毒液。</li>
-                <li><strong>清洗伤口：</strong>如果是蜜蜂（毒液呈酸性），用肥皂水清洗；如果是黄蜂（毒液呈碱性），用食醋清洗。</li>
-                <li>若出现呼吸困难、面部肿胀等过敏反应，立即拨打 120。</li>
-            </ul>
-        </div>
+            <!-- 卡片 8 -->
+            <div class="card" id="snake">
+                < img src="https://images.unsplash.com/photo-1531386151447-fd76ad50012f?auto=format&fit=crop&w=600&q=80" class="card-img" alt="毒蛇">
+                <div class="card-content">
+                    <h2>🐍 毒蛇咬伤</h2>
+                    <ul>
+                        <li>保持安静，限制伤肢活动。</li>
+                        <li><span class="highlight">绝对不要用嘴吸毒</span>！</li>
+                    </ul>
+                </div>
+            </div>
 
-        <!-- 卡片 10：触电急救 -->
-        <div class="card">
-            <h2>⚡ 触电急救</h2>
-            <ul>
-                <li>第一步绝对是<span class="highlight">切断电源</span>（拉闸、拔插头）。</li>
-                <li>如果无法断电，用干燥的木棍、塑料等绝缘物挑开电线，<strong>切勿直接用手拉拽</strong>。</li>
-                <li>脱离电源后，若患者无呼吸心跳，立刻进行心肺复苏（CPR）。</li>
-            </ul>
+            <!-- 卡片 9 -->
+            <div class="card" id="bee">
+                < img src="https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?auto=format&fit=crop&w=600&q=80" class="card-img" alt="蜜蜂">
+                <div class="card-content">
+                    <h2>🐝 蜂蜇伤急救</h2>
+                    <ul>
+                        <li>用卡片刮掉毒刺，切勿挤压毒囊。</li>
+                        <li>蜜蜂蜇伤用肥皂水洗，黄蜂蜇伤用食醋洗。</li>
+                    </ul>
+                </div>
+            </div>
+            
         </div>
     </div>
-
-    <footer>
-        <p>© 2024 应急科普 | 知识在手，遇事不慌</p >
-    </footer>
-
 </body>
 </html>
