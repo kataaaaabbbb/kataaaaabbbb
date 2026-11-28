@@ -3,79 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>应急科普指南</title>
+    <title>全能应急与安全科普指南</title>
     <style>
-        /* 基础设置 */
+        /* ====== 全新高级风格 ====== */
         body {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            background-color: #f7f9fc;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+            background-color: #f2f5f9; /* 清爽的高级灰底色 */
             color: #333;
             margin: 0;
             padding: 0;
             line-height: 1.6;
         }
-        /* 顶部导航条 */
+
+        /* 惊艳的渐变大头部 */
         header {
-            background-color: #e63946;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* 深邃高级蓝 */
             color: white;
             text-align: center;
-            padding: 40px 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 60px 20px 50px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 10px 30px rgba(30, 60, 114, 0.3);
+            margin-bottom: 40px;
         }
         header h1 {
             margin: 0;
-            font-size: 2rem;
-            letter-spacing: 1px;
+            font-size: 36px;
+            letter-spacing: 3px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
         }
         header p {
-            margin: 10px 0 0;
-            font-size: 1.1rem;
+            margin-top: 15px;
+            font-size: 18px;
             opacity: 0.9;
         }
-        /* 内容容器 */
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
+
+        /* 悬浮胶囊搜索框（你要求的输入框） */
+        .search-container {
+            max-width: 600px;
+            margin: -30px auto 40px;
+            position: relative;
+            z-index: 10;
             padding: 0 20px;
         }
-        /* 卡片样式 */
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+            padding: 5px;
+        }
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            outline: none;
+            border-radius: 50px;
+            color: #555;
+        }
+        .search-box button {
+            background: #ff4757; /* 亮红色按钮 */
+            color: white;
+            border: none;
+            padding: 0 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .search-box button:hover {
+            background: #e84118;
+        }
+
+        /* 卡片网格布局：自动排成好看的网格 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* 华丽的高级卡片样式 */
         .card {
             background: white;
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            border-left: 6px solid #e63946;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #eee;
         }
-        .card h2 {
-            margin-top: 0;
-            color: #e63946;
-            font-size: 1.4rem;
-            border-bottom: 1px solid #eee;
+        .card:hover {
+            transform: translateY(-10px); /* 鼠标悬停上浮效果 */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        /* 卡片顶部图片的样式（如果你在卡片里加了图片会自动变好看） */
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover; /* 保证图片铺满不拉伸 */
+            border-bottom: 4px solid #ff4757; /* 底部红线点缀 */
+        }
+
+        /* 卡片内部文字样式 */
+        .card-content {
+            padding: 25px;
+            flex: 1;
+        }
+        .card-content h2 {
+            margin: 0 0 15px 0;
+            font-size: 22px;
+            color: #2c3e50;
+            border-bottom: 2px dashed #f1f2f6;
             padding-bottom: 10px;
         }
-        .card ul {
+        
+        .card-content ul {
             padding-left: 20px;
-            margin-bottom: 0;
+            margin: 0;
+            color: #555;
         }
-        .card li {
-            margin-bottom: 10px;
+        .card-content li {
+            margin-bottom: 12px;
         }
-        /* 重点文字高亮 */
+        
+        /* 强调文字高亮 */
         .highlight {
-            background-color: #ffe3e3;
-            color: #c1121f;
-            padding: 2px 6px;
-            border-radius: 4px;
+            color: #ff4757;
             font-weight: bold;
+            background: #ffe3e3;
+            padding: 0 5px;
+            border-radius: 4px;
         }
+
         /* 底部版权 */
         footer {
             text-align: center;
-            color: #999;
-            font-size: 0.9rem;
-            margin: 40px 0 20px;
+            padding: 40px;
+            color: #aaa;
+            font-size: 14px;
+            background: #fff;
+            border-top: 1px solid #eee;
         }
+    </style>
+</head>
+<body>
+
+    <!-- 全新头部 -->
+    <header>
+        <h1>🚨 全能安全应急指南</h1>
+        <p>掌握关键时刻能救命的硬核技能</p >
+    </header>
+
+    <!-- 悬浮搜索输入框 -->
+    <div class="search-container">
+        <div class="search-box">
+            <input type="text" placeholder="输入你遇到的问题（如：火灾、触电、毒蛇）...">
+            <button>立即搜索</button>
+        </div>
+    </div>
+
+    <!-- 卡片内容区（从这里开始往下就是你原本的卡片 1、2、3） -->
+    <div class="container">
     </style>
 </head>
 <body>
